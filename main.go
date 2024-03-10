@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -25,7 +24,6 @@ func main() {
 		log.Fatal("Error in discord_url")
 	}
 
-	fmt.Println(discord_url)
 	// now := time.Now()
 	web_url := "https://dev-event.vercel.app/events"
 
@@ -67,13 +65,10 @@ func main() {
 		desc := d["desc"]
 		content += "### " + title + "\n" + desc + "\n"
 	}
-	fmt.Println(content)
 
-	if false {
-		_, err := client.CreateContent(content)
-		if err != nil {
-			log.Fatal(err)
-		}
+	_, err := client.CreateContent(content)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 }
