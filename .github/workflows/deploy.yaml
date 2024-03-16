@@ -2,7 +2,7 @@ name: Go
 
 # on:
 #   schedule:
-#     - cron: '0 15 * * 1' 
+#     - cron: '0 1 * * 1' 
 on: [push]
 
 jobs:
@@ -10,7 +10,6 @@ jobs:
 
     runs-on: ubuntu-latest
     
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup Go 1.21.6
@@ -21,6 +20,11 @@ jobs:
       - name: Install dependencies
         run: |
           go get .
-      
+
+      - name: make .env
+        run: |
+          touch .env
+          echo "DISCORD_URL=${{ secrets.DISCORD_URL }}" >> .env
+
       - name: run go
         run: go run main.go
