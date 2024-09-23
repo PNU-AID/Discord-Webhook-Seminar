@@ -1,0 +1,24 @@
+name: Go
+on:
+  schedule:
+    - cron: '0 1 * * 1' 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go 1.21.6
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21.6
+          cache-dependency-path: subdir/go.sum
+      - name: Install dependencies
+        run: |
+          go get .
+      - name: make .env
+        run: |
+          touch .env
+          echo "DISCORD_URL=${{ secrets.DISCORD_URL }}" >> .env
+      - name: run go
+        run: go run main.go
