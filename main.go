@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt" //ms test
 	"log"
-	"os"
+	"os" //Discord 관련
 	"strings"
 	"time"
 
@@ -85,7 +85,7 @@ func main() {
 		var titleText, urlText, dateText, hostText string
 		err_3 := chromedp.Run(ctx,
 			chromedp.Text(".Item_item__content__title__94_8Q", &titleText, chromedp.ByQuery, chromedp.FromNode(node)),
-			chromedp.AttributeValue("a", "href", &urlText, nil, chromedp.FromNode(node)),
+			chromedp.AttributeValue(".Item_item__container___T09W a", "href", &urlText, nil, chromedp.ByQuery, chromedp.FromNode(node)),
 			chromedp.Text(".Item_date__date__CoMqV", &dateText, chromedp.ByQuery, chromedp.FromNode(node)),
 			chromedp.Text(".Item_host__3dy8_", &hostText, chromedp.ByQuery, chromedp.FromNode(node)),
 		)
@@ -101,7 +101,7 @@ func main() {
 
 	var content string = "## 진행중인 개발자 행사\n"
 	for _, d := range data {
-		content += "###" + d["title"] + "\n"
+		content += "### " + d["title"] + "\n"
 		content += d["desc"] + "\n\n"
 	}
 
