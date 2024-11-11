@@ -105,9 +105,9 @@ func main() {
 		content += d["desc"] + "\n\n"
 	}
 
-	fmt.Println("Webhook content preview:\n", content) //ms test
-	fmt.Println("노드 개수: ", len(innerNodes))            //ms test
-	fmt.Println("필터링된 노드 개수: ", len(data))             //ms test
+	// fmt.Println("Webhook content preview:\n", content) //ms test
+	// fmt.Println("노드 개수: ", len(innerNodes))            //ms test
+	// fmt.Println("필터링된 노드 개수: ", len(data))             //ms test
 
 	_, err_4 = client.CreateContent(content)
 	if err_4 != nil {
