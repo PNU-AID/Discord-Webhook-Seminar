@@ -122,11 +122,11 @@ def build_discord_message(events):
 
 def main():
     # Load environment variables (= Discord URL)
-    # try:
-    #     discord_webhook_url = load_environment()
-    # except EnvironmentError as e:
-    #     logging.critical(e)
-    #     return
+    try:
+        discord_webhook_url = load_environment()
+    except EnvironmentError as e:
+        logging.critical(e)
+        return
 
     # Initialize Playwright and extract events
     with sync_playwright() as p:
@@ -139,10 +139,10 @@ def main():
     # Build the message content
     message_content = build_discord_message(events)
     logging.info("Constructed Discord message.")
-    print(message_content)
+    # print(message_content)
     # Send the message to Discord
-    # send_discord_message(discord_webhook_url, message_content)
-    # logging.info("Discord message sent successfully.")
+    send_discord_message(discord_webhook_url, message_content)
+    logging.info("Discord message sent successfully.")
 
 if __name__ == "__main__":
     main()
