@@ -90,7 +90,7 @@ def extract_events(page):
                 # Append the event data
                 event = {
                     "title": title,
-                    "desc": f"{url}\n주최: {host_text}\n모집: {date_text}"
+                    "desc": f"<{url}>\n주최: {host_text}\n모집: {date_text}"
                 }
                 events.append(event)
                 logging.debug(f"Extracted event: {event}")
