@@ -77,7 +77,7 @@ def extract_events(page):
 
                 # Extract URL
                 link_element = node.query_selector("a")
-                url = link_element.get_attribute("href").strip() if link_element else "No URL"
+                url = "<https://dev-event.vercel.app" + link_element.get_attribute("href").strip() + ">" if link_element else "No URL"
 
                 # Extract date
                 date_element = node.query_selector("[class^='Item_date__date__']") # .Item_date__date__CoMqV
@@ -90,7 +90,7 @@ def extract_events(page):
                 # Append the event data
                 event = {
                     "title": title,
-                    "desc": f"<{url}>\n주최: {host_text}\n모집: {date_text}"
+                    "desc": f"{url}\n주최: {host_text}\n모집: {date_text}"
                 }
                 events.append(event)
                 logging.debug(f"Extracted event: {event}")
